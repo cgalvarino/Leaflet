@@ -3482,7 +3482,6 @@ L.Marker = L.Class.extend({
 		alt: '',
 		clickable: true,
 		draggable: false,
-		disablePopup: false,
 		keyboard: true,
 		zIndexOffset: 0,
 		opacity: 1,
@@ -3725,7 +3724,7 @@ L.Marker = L.Class.extend({
 
 		if ((!this.dragging || !this.dragging._enabled) && this._map.dragging && this._map.dragging.moved()) { return; }
 
-		if (!this.options.disablePopup || !this._map.options.disablePopup){
+		if (!this._map.options.disablePopup){
 			this.fire(e.type, {
 				originalEvent: e,
 				latlng: this._latlng
