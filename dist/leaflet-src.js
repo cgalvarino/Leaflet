@@ -1543,6 +1543,7 @@ L.Map = L.Class.extend({
 	includes: L.Mixin.Events,
 
 	options: {
+		disablePopup: false,
 		crs: L.CRS.EPSG3857,
 
 		/*
@@ -3481,6 +3482,7 @@ L.Marker = L.Class.extend({
 		alt: '',
 		clickable: true,
 		draggable: false,
+		disablePopup: false,
 		keyboard: true,
 		zIndexOffset: 0,
 		opacity: 1,
@@ -3593,7 +3595,7 @@ L.Marker = L.Class.extend({
 			if (options.title) {
 				icon.title = options.title;
 			}
-			
+
 			if (options.alt) {
 				icon.alt = options.alt;
 			}
@@ -3723,10 +3725,12 @@ L.Marker = L.Class.extend({
 
 		if ((!this.dragging || !this.dragging._enabled) && this._map.dragging && this._map.dragging.moved()) { return; }
 
-		this.fire(e.type, {
-			originalEvent: e,
-			latlng: this._latlng
-		});
+		if (this.options.disablePopup || this._map.options.disablePopup){
+			this.fire(e.type, {
+				originalEvent: e,
+				latlng: this._latlng
+			});
+		}
 	},
 
 	_onKeyPress: function (e) {
@@ -5083,7 +5087,7 @@ L.Path = (L.Path.SVG && !window.L_PREFER_CANVAS) || !L.Browser.canvas ? L.Path :
 		}
 
 		this._requestUpdate();
-		
+
 		this.fire('remove');
 		this._map = null;
 	},
@@ -8131,7 +8135,7 @@ L.Control.Attribution = L.Control.extend({
 				this.addAttribution(map._layers[i].getAttribution());
 			}
 		}
-		
+
 		map
 		    .on('layeradd', this._onLayerAdd, this)
 		    .on('layerremove', this._onLayerRemove, this);
