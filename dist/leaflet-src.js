@@ -4900,7 +4900,9 @@ L.Path.include({
 
 	_openPopup: function (e) {
 		this._popup.setLatLng(e.latlng);
-		this._map.openPopup(this._popup);
+		if (!this._map.options.disablePopup){
+			this._map.openPopup(this._popup);
+		}
 	}
 });
 
