@@ -2196,9 +2196,9 @@ L.Map = L.Class.extend({
 	},
 
 	_onMouseClick: function (e) {
-		if (!this._loaded || (!e._simulated &&
-		        ((this.dragging && this.dragging.moved()) ||
-		         (this.boxZoom  && this.boxZoom.moved()))) ||
+		if (!this._loaded ||
+			(!e._simulated && this.dragging && this.dragging.moved()) ||
+			(!e._simulated && this.boxZoom  && this.boxZoom.zoomed()) ||
 		            L.DomEvent._skipped(e)) { return; }
 
 		this.fire('preclick');
@@ -7569,6 +7569,7 @@ L.Map.BoxZoom = L.Handler.extend({
 		this._container = map._container;
 		this._pane = map._panes.overlayPane;
 		this._moved = false;
+		this._zoomed = false;
 	},
 
 	addHooks: function () {
@@ -7580,12 +7581,17 @@ L.Map.BoxZoom = L.Handler.extend({
 		this._moved = false;
 	},
 
+	zoomed: function () {
+		return this._zoomed;
+	},
+
 	moved: function () {
 		return this._moved;
 	},
 
 	_onMouseDown: function (e) {
 		this._moved = false;
+		this._zoomed = false;
 
 		if (!e.shiftKey || ((e.which !== 1) && (e.button !== 1))) { return false; }
 
@@ -7621,6 +7627,10 @@ L.Map.BoxZoom = L.Handler.extend({
 		        Math.min(layerPoint.y, startPoint.y));
 
 		L.DomUtil.setPosition(box, newPos);
+
+		if (!this._zoomed) {
+			this._zoomed = true;
+		}
 
 		this._moved = true;
 
