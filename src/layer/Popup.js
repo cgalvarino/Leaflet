@@ -501,6 +501,11 @@ Layer.include({
 			return;
 		}
 
+		// for OceansMap
+		if (this._map.options.disablePopup) {
+			return;
+		}
+
 		// prevent map click
 		DomEvent.stop(e);
 
