@@ -120,7 +120,11 @@ export var Map = Evented.extend({
 
 		// @option trackResize: Boolean = true
 		// Whether the map automatically handles browser window resize to update itself.
-		trackResize: true
+		trackResize: true,
+
+		// @option disablePopup: Boolean = false
+		// Whether all popups are diabled (for OceansMap).
+		disablePopup: true
 	},
 
 	initialize: function (id, options) { // (HTMLElement or String, Object)
