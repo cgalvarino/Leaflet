@@ -7,8 +7,8 @@ tmp/**/*
 _site
 *.sublime-*
 _site
-dist/*.js
-dist/*.map
+# dist/*.js
+# dist/*.map
 dist/reference.html
 coverage/
 *.js.html
