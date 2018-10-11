@@ -1,5 +1,5 @@
 /* @preserve
- * Leaflet 1.3.4+v1.3.4.e57952b, a JS library for interactive maps. http://leafletjs.com
+ * Leaflet 1.3.4+v1.3.4-oceansmap.f751c15, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2018 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
@@ -9,7 +9,7 @@
 	(factory((global.L = {})));
 }(this, (function (exports) { 'use strict';
 
-var version = "1.3.4+heads/v1.3.4.e57952b";
+var version = "1.3.4+v1.3.4-oceansmap.f751c15";
 
 /*
  * @namespace Util
@@ -3111,7 +3111,7 @@ var Map = Evented.extend({
 
 		// @option disablePopup: Boolean = false
 		// Whether all popups are diabled (for OceansMap).
-		disablePopup: true
+		disablePopup: false
 	},
 
 	initialize: function (id, options) { // (HTMLElement or String, Object)

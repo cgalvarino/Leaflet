@@ -124,7 +124,7 @@ export var Map = Evented.extend({
 
 		// @option disablePopup: Boolean = false
 		// Whether all popups are diabled (for OceansMap).
-		disablePopup: true
+		disablePopup: false
 	},
 
 	initialize: function (id, options) { // (HTMLElement or String, Object)
