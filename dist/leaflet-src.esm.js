@@ -1,9 +1,9 @@
 /* @preserve
- * Leaflet 1.3.4+v1.3.4-oceansmap.f751c15, a JS library for interactive maps. http://leafletjs.com
+ * Leaflet 1.3.4+timetilelayer-oceansmap02.48e97e2, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2018 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
-var version = "1.3.4+v1.3.4-oceansmap.f751c15";
+var version = "1.3.4+timetilelayer-oceansmap02.48e97e2";
 
 /*
  * @namespace Util
@@ -11646,6 +11646,27 @@ function tileLayer(url, options) {
 }
 
 /*
+ * @class TimeTileLayer
+ * @inherits TileLayer
+ *
+ * Currently this is a stub to treat Oceansmap TimeTileLayers as normal TileLayers.  This extension was
+ * originally in the OM code base and did things like paint the layer as one tile instead of smaller tiles.
+ * And it kept the current timestamp on the map while loading a new user-requested time.
+ * https://github.com/asascience/OceansMap/blob/e94e697c8cebe97f077e74af1251f964ab1f69ca/oceansmap/static/js/common/L.TimeTileLayer.js
+ */
+
+var TimeTileLayer = TileLayer.extend({
+});
+
+
+// @factory L.timeTilelayer(urlTemplate: String, options?: TimeTileLayer options)
+// Instantiates a time tile layer object given a `URL template` and optionally an options object.
+
+function timeTileLayer(url, options) {
+	return new TimeTileLayer(url, options);
+}
+
+/*
  * @class TileLayer.WMS
  * @inherits TileLayer
  * @aka L.TileLayer.WMS
@@ -13783,5 +13804,5 @@ Map.TouchZoom = TouchZoom;
 
 Object.freeze = freeze;
 
-export { version, Control, control, Browser, Evented, Mixin, Util, Class, Handler, extend, bind, stamp, setOptions, DomEvent, DomUtil, PosAnimation, Draggable, LineUtil, PolyUtil, Point, toPoint as point, Bounds, toBounds as bounds, Transformation, toTransformation as transformation, index as Projection, LatLng, toLatLng as latLng, LatLngBounds, toLatLngBounds as latLngBounds, CRS, GeoJSON, geoJSON, geoJson, Layer, LayerGroup, layerGroup, FeatureGroup, featureGroup, ImageOverlay, imageOverlay, VideoOverlay, videoOverlay, DivOverlay, Popup, popup, Tooltip, tooltip, Icon, icon, DivIcon, divIcon, Marker, marker, TileLayer, tileLayer, GridLayer, gridLayer, SVG, svg$1 as svg, Renderer, Canvas, canvas$1 as canvas, Path, CircleMarker, circleMarker, Circle, circle, Polyline, polyline, Polygon, polygon, Rectangle, rectangle, Map, createMap as map };
+export { version, Control, control, Browser, Evented, Mixin, Util, Class, Handler, extend, bind, stamp, setOptions, DomEvent, DomUtil, PosAnimation, Draggable, LineUtil, PolyUtil, Point, toPoint as point, Bounds, toBounds as bounds, Transformation, toTransformation as transformation, index as Projection, LatLng, toLatLng as latLng, LatLngBounds, toLatLngBounds as latLngBounds, CRS, GeoJSON, geoJSON, geoJson, Layer, LayerGroup, layerGroup, FeatureGroup, featureGroup, ImageOverlay, imageOverlay, VideoOverlay, videoOverlay, DivOverlay, Popup, popup, Tooltip, tooltip, Icon, icon, DivIcon, divIcon, Marker, marker, TileLayer, tileLayer, TimeTileLayer, timeTileLayer, GridLayer, gridLayer, SVG, svg$1 as svg, Renderer, Canvas, canvas$1 as canvas, Path, CircleMarker, circleMarker, Circle, circle, Polyline, polyline, Polygon, polygon, Rectangle, rectangle, Map, createMap as map };
 //# sourceMappingURL=leaflet-src.esm.js.map

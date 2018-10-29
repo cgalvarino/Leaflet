@@ -1,5 +1,5 @@
 /* @preserve
- * Leaflet 1.3.4+v1.3.4-oceansmap.f751c15, a JS library for interactive maps. http://leafletjs.com
+ * Leaflet 1.3.4+timetilelayer-oceansmap02.48e97e2, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2018 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
@@ -9,7 +9,7 @@
 	(factory((global.L = {})));
 }(this, (function (exports) { 'use strict';
 
-var version = "1.3.4+v1.3.4-oceansmap.f751c15";
+var version = "1.3.4+timetilelayer-oceansmap02.48e97e2";
 
 /*
  * @namespace Util
@@ -11652,6 +11652,27 @@ function tileLayer(url, options) {
 }
 
 /*
+ * @class TimeTileLayer
+ * @inherits TileLayer
+ *
+ * Currently this is a stub to treat Oceansmap TimeTileLayers as normal TileLayers.  This extension was
+ * originally in the OM code base and did things like paint the layer as one tile instead of smaller tiles.
+ * And it kept the current timestamp on the map while loading a new user-requested time.
+ * https://github.com/asascience/OceansMap/blob/e94e697c8cebe97f077e74af1251f964ab1f69ca/oceansmap/static/js/common/L.TimeTileLayer.js
+ */
+
+var TimeTileLayer = TileLayer.extend({
+});
+
+
+// @factory L.timeTilelayer(urlTemplate: String, options?: TimeTileLayer options)
+// Instantiates a time tile layer object given a `URL template` and optionally an options object.
+
+function timeTileLayer(url, options) {
+	return new TimeTileLayer(url, options);
+}
+
+/*
  * @class TileLayer.WMS
  * @inherits TileLayer
  * @aka L.TileLayer.WMS
@@ -13845,6 +13866,8 @@ exports.Marker = Marker;
 exports.marker = marker;
 exports.TileLayer = TileLayer;
 exports.tileLayer = tileLayer;
+exports.TimeTileLayer = TimeTileLayer;
+exports.timeTileLayer = timeTileLayer;
 exports.GridLayer = GridLayer;
 exports.gridLayer = gridLayer;
 exports.SVG = SVG;
